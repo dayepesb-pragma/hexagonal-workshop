@@ -28,26 +28,15 @@
    CREATE SCHEMA skillnet_test;
    GRANT ALL PRIVILEGES ON SCHEMA skillnet_test TO skillnettest; 
    ```
-8. Ahora crea la tabla requerida para este proyecto
+8. Descargar la imagen docker de rabbit
 
-   ```sql
-   -- skillnet_test.car definition
+    ```bash
+    docker pull rabbitmq:3-management
+    ```
    
-   -- Drop table
-   
-   -- DROP TABLE skillnet_test.car;
-   
-   CREATE TABLE skillnet_test.car (
-       kms int4 NULL,
-       "year" int4 NULL,
-       id int8 NOT NULL,
-       brand varchar(255) NULL,
-       image_url varchar(255) NULL,
-       model varchar(255) NULL,
-       public_name varchar(255) NULL,
-       state varchar(255) NULL,
-       CONSTRAINT car_pkey PRIMARY KEY (id)
-   );
+9. Ejecutar el contenedor de rabbitmq
+   ```bash
+   docker run -d --name rabbitmq -p 5672:5672 -p 15672:15672 rabbitmq:3-management
    ```
    
 9. Ejecuta el proyecto y prueba con postman los endpoints
